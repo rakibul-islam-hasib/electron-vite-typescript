@@ -22,6 +22,7 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 function createWindow() {
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -32,12 +33,41 @@ function createWindow() {
     win?.webContents.send('main-process-message', true)
   })
 
+
+
+
+  // create a splash window
+  const splash: BrowserWindow = new BrowserWindow({
+    width: 300,
+    height: 300,
+    frame: false,
+    alwaysOnTop: true,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  })
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
+    splash.loadURL(VITE_DEV_SERVER_URL)
   } else {
     // win.loadFile('dist/index.html')
     win.loadFile(path.join(process.env.DIST, 'index.html'))
+    splash.loadFile(path.join(process.env.DIST, 'index.html'))
   }
+
+  ipcMain.on('main-process-message', (_, args) => {
+    console.log('main-process-message', args)
+    splash.close()
+    if (!args) {
+      splash.close()
+      win?.show()
+    }
+  })
+
+
+
+
+
 }
 
 
@@ -64,7 +94,7 @@ ipcMain.on('test', (_, args) => {
 })
 
 
-app.whenReady().then(()=>{
+app.whenReady().then(() => {
   createWindow()
 
 })
