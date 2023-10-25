@@ -21,8 +21,6 @@ const App: React.FC = () => {
     <div>
       <h1>Hello</h1>
       <Link to={'/loading'}>GO </Link>
-
-
     </div>
   );
 };

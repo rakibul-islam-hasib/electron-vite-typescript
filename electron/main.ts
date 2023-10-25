@@ -30,7 +30,7 @@ function createWindow() {
 
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', true)
+    win?.webContents.send('main-process-message', false)
   })
 
 
@@ -56,7 +56,6 @@ function createWindow() {
   }
 
   ipcMain.on('main-process-message', (_, args) => {
-    console.log('main-process-message', args)
     splash.close()
     if (!args) {
       splash.close()

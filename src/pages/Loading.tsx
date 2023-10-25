@@ -20,7 +20,7 @@ const Loading: React.FC = () => {
         window.ipcRenderer.send('main-process-message', false);
     }
     return (
-        <div className='h-screen w-screen overflow-hidden flex justify-center items-center'>
+        <div id='loader' className='h-screen w-screen overflow-hidden flex justify-center items-center'>
             <div className="h-7 relative rounded-full w-[90%] mx-auto ">
                 <div style={{ width: `${loadingLength}%` }} className="absolute top-0 left-0 rounded-full bg-green-500 h-full"></div>
             </div>
