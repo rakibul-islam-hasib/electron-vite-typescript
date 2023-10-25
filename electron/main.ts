@@ -21,7 +21,7 @@ const VITE_DEV_SERVER_URL = process.env['VITE_DEV_SERVER_URL']
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    icon: path.join(__dirname, 'icon.png'),
     show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -46,6 +46,7 @@ function createWindow() {
     maxWidth: 305,
     alwaysOnTop: true,
     resizable: false,
+    icon: path.join(__dirname, '../public/icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
