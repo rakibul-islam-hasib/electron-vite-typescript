@@ -42,11 +42,16 @@ function createWindow() {
     height: 300,
     frame: false,
     // show: false,
+    maxHeight: 305,
+    maxWidth: 305,
     alwaysOnTop: true,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
   })
+
+
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
     splash.loadURL(VITE_DEV_SERVER_URL)

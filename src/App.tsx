@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Loading from './pages/Loading';
+import Home from './pages/home/Home';
 
 declare global {
   interface Window {
@@ -14,16 +14,11 @@ const App: React.FC = () => {
   const [isLoaderOn, setIsLoaderOn] = React.useState<boolean>(true);
 
   window.ipcRenderer.on('main-process-message', (_event, message) => {
-    console.log(message, 'message from main process')
+    // console.log(message, 'message from main process')
     setIsLoaderOn(message);
   });
 
-  return isLoaderOn ? <Loading /> : (
-    <div>
-      <h1>Hello</h1>
-      <Link to={'/loading'}>GO </Link>
-    </div>
-  );
+  return isLoaderOn ? <Loading /> :<Home />;
 };
 
 export default App;
