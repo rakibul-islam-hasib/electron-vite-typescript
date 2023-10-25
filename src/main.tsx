@@ -8,14 +8,14 @@ import Loading from './pages/Loading';
 
 const router = createHashRouter([
   {
-    path: '/',
-    element: <App />,
-  },
+    path : '/',
+    element : <App />,
+  }, 
   {
-    path: '/loading',
-    element: <Loading />,
+    path : '/loading',
+    element : <Loading />,
   }
-])
+]) 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
