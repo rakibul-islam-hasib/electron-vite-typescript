@@ -11,9 +11,10 @@ declare global {
 }
 
 const App: React.FC = () => {
-  const [isLoaderOn, setIsLoaderOn] = React.useState<boolean>(false);
+  const [isLoaderOn, setIsLoaderOn] = React.useState<boolean>(true);
 
   window.ipcRenderer.on('main-process-message', (_event, message) => {
+    console.log(message, 'message from main process')
     setIsLoaderOn(message);
   });
 

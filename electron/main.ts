@@ -41,6 +41,7 @@ function createWindow() {
     width: 300,
     height: 300,
     frame: false,
+    // show: false,
     alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -54,6 +55,10 @@ function createWindow() {
     win.loadFile(path.join(process.env.DIST, 'index.html'))
     splash.loadFile(path.join(process.env.DIST, 'index.html'))
   }
+
+  // splash.once('ready-to-show', () => {
+  //   splash.show()
+  // })
 
   ipcMain.on('main-process-message', (_, args) => {
     splash.close()
